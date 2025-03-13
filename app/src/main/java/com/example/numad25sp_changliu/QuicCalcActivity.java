@@ -20,7 +20,12 @@ public class QuicCalcActivity extends AppCompatActivity {
     }
 
     private void setupButtons() {
-        int[] buttonIds = {R.id.btn_0, R.id.btn_1, R.id.btn_2, R.id.btn_3, R.id.btn_4, R.id.btn_5, R.id.btn_6, R.id.btn_7, R.id.btn_8, R.id.btn_9, R.id.btn_add, R.id.btn_subtract, R.id.btn_equals, R.id.btn_backspace};
+        // Create an array of all button IDs
+        int[] buttonIds = {
+                R.id.btn_0, R.id.btn_1, R.id.btn_2, R.id.btn_3, R.id.btn_4,
+                R.id.btn_5, R.id.btn_6, R.id.btn_7, R.id.btn_8, R.id.btn_9,
+                R.id.btn_add, R.id.btn_subtract, R.id.btn_equals, R.id.btn_backspace
+        };
 
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
@@ -41,6 +46,7 @@ public class QuicCalcActivity extends AppCompatActivity {
             }
         };
 
+        // Set the same listener for all buttons
         for (int id : buttonIds) {
             findViewById(id).setOnClickListener(listener);
         }
@@ -56,7 +62,8 @@ public class QuicCalcActivity extends AppCompatActivity {
 
     private void evaluateExpression() {
         try {
-            double result = eval(inputExpression.toString());
+            String expression = inputExpression.toString();
+            double result = evaluateSimpleExpression(expression);
             inputExpression.setLength(0);
             inputExpression.append(result);
         } catch (Exception e) {
@@ -67,9 +74,22 @@ public class QuicCalcActivity extends AppCompatActivity {
         updateDisplay();
     }
 
-    private double eval(String expression) {
-        return new org.mozilla.javascript.ContextFactory().call(cx -> {
-            return (double) cx.evaluateString(cx.initStandardObjects(), expression, "calc", 1, null);
-        });
+    // A simple expression evaluator for basic operations
+    private double evaluateSimpleExpression(String expression) {
+        try {
+            // Simple evaluation for expressions like "1+2" or "5-3"
+            // This handles only one operation at a time
+            if (expression.contains("+")) {
+                String[] parts = expression.split("\\+");
+                return Double.parseDouble(parts[0]) + Double.parseDouble(parts[1]);
+            } else if (expression.contains("-")) {
+                String[] parts = expression.split("-");
+                return Double.parseDouble(parts[0]) - Double.parseDouble(parts[1]);
+            } else {
+                return Double.parseDouble(expression);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Invalid expression");
+        }
     }
 }
