@@ -25,7 +25,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />  <!-- Added margin for spacing -->
+        android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/quick_calc_button"
@@ -33,6 +33,16 @@
         android:layout_height="wrap_content"
         android:text="Quic Calc"
         app:layout_constraintTop_toBottomOf="@+id/about_me_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/contacts_collector_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contacts Collector"
+        app:layout_constraintTop_toBottomOf="@+id/quick_calc_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>

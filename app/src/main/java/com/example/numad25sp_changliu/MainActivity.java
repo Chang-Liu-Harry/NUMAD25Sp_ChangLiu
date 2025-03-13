@@ -26,13 +26,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // You can add code for the About Me button here if needed
+        // About Me button handler
         Button aboutMeButton = findViewById(R.id.about_me_button);
         aboutMeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Handle About Me button click if needed
                 // For now, this is just a placeholder
+            }
+        });
+
+        // Contacts Collector button handler
+        Button contactsButton = findViewById(R.id.contacts_collector_button);
+        contactsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an Intent to start ContactsCollectorActivity
+                Intent intent = new Intent(MainActivity.this, ContactsCollectorActivity.class);
+                startActivity(intent);
             }
         });
     }
