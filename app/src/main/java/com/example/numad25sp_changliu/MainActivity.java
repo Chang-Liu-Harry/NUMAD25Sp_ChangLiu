@@ -46,5 +46,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // Prime Finder button handler
+        Button primeFinderButton = findViewById(R.id.prime_finder_button);
+        primeFinderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an Intent to start PrimeFinderActivity
+                Intent intent = new Intent(MainActivity.this, PrimeFinderActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
